@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standorteignung Datencenter</title>
+<style>
+  :root { --text:#1d1d1f; --leise:#5f6368; --linie:#e3e3e6; --flaeche:#f6f7f9; --akzent:#1a9850; --link:#1a5fb4; --bg:#fff; }
+  @media (prefers-color-scheme: dark) { :root { --text:#ececef; --leise:#a0a4ab; --linie:#34363b; --flaeche:#1e2024; --akzent:#5cc47f; --link:#8ab4f8; --bg:#131416; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:880px; margin:0 auto; padding:48px 16px 64px; }
+  .kicker { color:var(--leise); font-size:14px; letter-spacing:.02em; margin:0 0 6px; }
+  h1 { font-size:34px; line-height:1.15; margin:0 0 14px; }
+  h2 { font-size:20px; margin:44px 0 12px; }
+  p { margin:0 0 12px; }
+  .lead { font-size:18px; color:var(--leise); max-width:680px; }
+  .karten { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px; margin-top:28px; }
+  .karte { display:flex; flex-direction:column; padding:18px 20px; border:1px solid var(--linie); border-radius:10px; background:var(--flaeche); color:inherit; text-decoration:none; transition:border-color .15s, transform .15s; }
+  .karte:hover { border-color:var(--akzent); transform:translateY(-2px); }
+  .kanton { font-weight:650; font-size:18px; margin-bottom:10px; }
+  .zahl { font-size:34px; font-weight:700; color:var(--akzent); line-height:1; font-variant-numeric:tabular-nums; }
+  .einheit { color:var(--leise); font-size:14px; margin-bottom:12px; }
+  .meta { color:var(--leise); font-size:13px; margin-top:auto; }
+  .skala { display:flex; gap:0; margin:10px 0 6px; max-width:420px; }
+  .skala span { flex:1; font-size:12px; text-align:center; padding:4px 0; color:#1d1d1f; }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th, td { text-align:left; padding:8px 10px 8px 0; border-bottom:1px solid var(--linie); vertical-align:top; }
+  th { font-size:13px; color:var(--leise); font-weight:600; }
+  td:last-child, th:last-child { text-align:right; padding-right:0; white-space:nowrap; }
+  .tabelle { overflow-x:auto; }
+  ul { padding-left:20px; margin:0; } li { margin-bottom:4px; }
+  .hinweis { border-left:3px solid var(--akzent); background:var(--flaeche); padding:12px 16px; border-radius:0 8px 8px 0; margin-top:24px; font-size:15px; }
+  footer { margin-top:48px; padding-top:16px; border-top:1px solid var(--linie); color:var(--leise); font-size:14px; }
+  a { color:var(--link); }
+  @media (max-width:520px) { h1 { font-size:27px; } main { padding-top:32px; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Zukunft Arbeitsplatzgebiete · Versorgungsfunktionen</p>
+  <h1>Standorteignung Datencenter</h1>
+  <p class="lead">Wo in den Arbeitszonen der Kantone Zürich, Thurgau und Luzern eignen sich Flächen für ein Rechenzentrum? Die Karten bewerten jede Hektare nach acht Kriterien.</p>
+
+  <div class="karten">
+      <a class="karte" href="zh/">
+        <span class="kanton">Kanton Zürich</span>
+        <span class="zahl">252</span><span class="einheit">Standorte ab Eignung 60</span>
+        <span class="meta">284'888 Zellen · Stand 29.09.2026 · ca. 15 MB</span>
+      </a>
+      <a class="karte" href="tg/">
+        <span class="kanton">Kanton Thurgau</span>
+        <span class="zahl">157</span><span class="einheit">Standorte ab Eignung 60</span>
+        <span class="meta">223'802 Zellen · Stand 29.09.2026 · ca. 12 MB</span>
+      </a>
+      <a class="karte" href="lu/">
+        <span class="kanton">Kanton Luzern</span>
+        <span class="zahl">130</span><span class="einheit">Standorte ab Eignung 60</span>
+        <span class="meta">295'724 Zellen · Stand 29.09.2026 · ca. 16 MB</span>
+      </a>
+  </div>
+
+  <div class="hinweis"><strong>Arbeitsstand.</strong> Kriterien, Punkteskalen und Gewichte sind ein Entwurf und werden in Workshops angepasst. Die Karten zeigen eine Eignung, keine Standortempfehlung.</div>
+
+  <h2>So liest man die Karte</h2>
+  <p>Jede Zelle ist eine Hektare (100 × 100 m) in einer Arbeitszone. Die Farbe zeigt die Eignung von 0 bis 100 Punkten.</p>
+  <div class="skala"><span style="background:#d73027;color:#fff">0–20</span><span style="background:#fc8d59">20–40</span><span style="background:#fee08b">40–60</span><span style="background:#d9ef8b">60–80</span><span style="background:#1a9850;color:#fff">80–100</span></div>
+  <p>Ein Klick auf eine Zelle zeigt die Punkte je Kriterium und die Messwerte dahinter. Die Karten sind gross (12–16 MB) und brauchen beim ersten Öffnen einige Sekunden.</p>
+
+  <h2>Methode</h2>
+  <p><strong>1. Ausschluss.</strong> Bewertet werden nur Zellen, die zu mindestens 20 % in einer Arbeitszone liegen. Zellen, die zu mehr als der Hälfte in einem Gebiet mit erheblicher Naturgefahr liegen, fallen weg.</p>
+  <p><strong>2. Bewertung.</strong> Jedes Kriterium vergibt 0–100 Punkte. Die Eignung ist das gewichtete Mittel der bekannten Kriterien. Fehlt ein Wert, zählt er als unbekannt, nicht als 0.</p>
+  <p><strong>3. Standorte.</strong> Zusammenhängende Zellen ab Eignung 60, mindestens 0.8 ha gross und 80 m breit, bilden einen Standort.</p>
+
+  <h2>Kriterien</h2>
+  <div class="tabelle"><table>
+    <thead><tr><th>Kriterium</th><th>misst</th><th>Gewicht</th></tr></thead>
+    <tbody>
+        <tr><td>Unterwerk</td><td>Distanz zum nächsten Unterwerk ab 50 kV</td><td>1</td></tr>
+        <tr><td>Kundennähe</td><td>Beschäftigte in IT/Telekom, Finanz, Pharma/Forschung, Verwaltung im Umkreis von 2 km</td><td>1</td></tr>
+        <tr><td>Autobahnanschluss</td><td>Distanz zur nächsten Ein- oder Ausfahrt</td><td>1</td></tr>
+        <tr><td>Naturgefahren</td><td>Gefahrenstufe, gemittelt über die Zelle</td><td>1</td></tr>
+        <tr><td>Hangneigung</td><td>mittlere Neigung der Zelle</td><td>1</td></tr>
+        <tr><td>Glasfaser</td><td>Anteil der Gebäude mit Glasfaser</td><td>0.5</td></tr>
+        <tr><td>Anbieter</td><td>Anzahl Anbieter mit eigenem Festnetz</td><td>0.5</td></tr>
+        <tr><td>ÖV-Güteklassen</td><td>Erschliessung mit öffentlichem Verkehr</td><td>0.5</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Datenquellen</h2>
+  <ul>
+        <li>BFE: Elektrische Anlagen >36 kV (Geobasisdatensatz 219.1), via geodienste.ch</li>
+        <li>BAKOM: Breitbandatlas Schweiz (Glasfaser, Anbieter mit eigenem Festnetz), Stand 02.06.2026</li>
+        <li>BFS: STATENT 2024, Hektarraster nach NOGA 2008</li>
+        <li>swisstopo: swissTLM3D 2026 (Autobahn-Ein- und -Ausfahrten), swissALTI3D (Hangneigung)</li>
+        <li>ARE: ÖV-Güteklassen</li>
+        <li>Kantone / KGK: Gefahrenkarten (Geobasisdatensatz 166.1), via geodienste.ch</li>
+        <li>Kantone ZH, TG, LU: Nutzungsplanung (Bauzonen)</li>
+        <li>Hintergrundkarten: © swisstopo</li>
+  </ul>
+
+  <footer>Verein Metropolitanraum Zürich · Bearbeitung KEEAS AG · Stand 30.09.2026</footer>
+</main>
+</body>
+</html>
